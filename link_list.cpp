@@ -108,7 +108,16 @@ void detectloop(struct Node * p,map<struct Node *,int> m){
 
 
 
+//same way check for palindrome list : reverse from the middle of the list use 
+//2 pointer method to find the middle of the list
 
+//+++++++++++
+//remove duplicates from unsorted linked list
+
+void removedup_uns(struct Node * head){
+    struct Node * p = head;
+    
+}
 
 
 
