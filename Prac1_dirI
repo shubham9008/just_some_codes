@@ -1,0 +1,103 @@
+
+//minimum-number-of-given-operations-required-to-make-two-strings-equal
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+#define f(i,a,b) for(ll i=a;i<b;i++)
+#define m 998244353 
+
+ll min_steps=INT_MAX;
+std::map<string, int> h;
+
+int findposn(string s){
+    f(i,0,s.length()){
+        if(s[i]=='_'){
+            return i;
+        }
+    }
+}
+
+string exchange(string s,int val,int pos,int l){
+    if(val==-1){
+        if(pos==0)
+        return s;
+        char c = s[pos];
+        s[pos] = s[pos-1];
+        s[pos-1]=c;
+        return s;
+    }
+        if(val==-2){
+        if(pos==0 or pos==1)
+        return s;
+        char c = s[pos];
+        s[pos] = s[pos-2];
+        s[pos-2]=c;
+        return s;
+    }
+        if(val==1){
+        if(pos==l-1)
+        return s;
+        char c = s[pos];
+        s[pos] = s[pos+1];
+        s[pos+1]=c;
+        return s;
+    }
+        if(val==-1){
+        if(pos==l-1 or pos==l-2)
+        return s;
+        char c = s[pos];
+        s[pos] = s[pos+2];
+        s[pos+2]=c;
+    }
+    return s;
+}
+
+
+
+
+void mins(string s1,string s2,int steps){
+if(s1==s2){
+    if(min_steps>steps){
+    min_steps=steps;
+    return;
+    }
+}    
+else{//exists 
+    if(h.find(s1)!=h.end()){
+        return;
+    }
+    else{
+        h[s1]=1;
+        string a,b,c,d;
+        ll l=s1.length();
+        int pos = findposn(s1);
+        a=exchange(s1,-1,pos,l);
+        mins(a,s2,steps+1);
+        b=exchange(s1,-2,pos,l);
+        mins(b,s2,steps+1);
+        c=exchange(s1,1,pos,l);
+        mins(c,s2,steps+1);
+        d=exchange(s1,2,pos,l);
+        mins(d,s2,steps+1);
+    }
+}
+
+}
+
+int main() {
+	string s1,s2;
+	cin>>s1;
+	cin>>s2;
+	ll l=s1.length();
+	ll steps=0;
+    //find posn of _
+  
+    int pos=findposn(s1);
+    
+    mins(s1,s2,steps);
+	cout<<min_steps<<endl;
+	
+	
+	return 0;
+}
