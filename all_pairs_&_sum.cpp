@@ -15,7 +15,9 @@ int main() {
 	    
 	    for(ll j=0;j<n;j++){
 	    for(ll i=0;i<=31;i++){
-	           if(a[j] & (1<<i)!=0){
+	    
+	    //this is wrong :  if(a[j]&(1<<j)!=0)
+	           if((a[j] & (1<<i))!=0){
 	               b[i]++;
 	           }
 	        }
